@@ -1,0 +1,4 @@
+0,1,4,0.4,1,1,
+1145557,0.00005,0.00001,1.8,100,0.8,0.0
+       read(8,*)irest,iuprof,iexit,stab,jn1,jnim,
+     &		itamax,epsi,stat,beta0,re,uc

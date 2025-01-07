@@ -1,0 +1,379 @@
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+c
+	subroutine non_uni_coeff
+c
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+c
+	include 'header'
+c
+c	write(*,*)'entered non_uni_coeff'
+c
+	do i=3,ire-1
+c
+	theta_1=deltax(i)/deltax(i-1)
+	theta_2=deltax(i+1)/deltax(i)
+	theta_3=deltax(i+2)/deltax(i+1)
+c
+	f_1=theta_3
+	f_2=2.0*theta_3+(theta_3**2.0)
+	f_3=3.0*theta_3+3.0*(theta_3**2.0)+(theta_3**3.0)
+	f_4=4.0*theta_3+6.0*(theta_3**2.0)+4.0*
+     1	    (theta_3**3.0)+(theta_3**4.0)
+	f_5=1.0/(theta_1*theta_2)
+	f_6=(2.0*theta_1+1.0)*(f_5**2.0)
+	f_7=(3.0*(theta_1**2.0)+3.0*theta_1+1.0)*(f_5**3.0)
+     	f_8=(4.0*(theta_1**3.0)+6.0*(theta_1**2.0)+4.0*theta_1+1.0)
+     1	   *(f_5**4.0) 
+c
+	s51=-1.0/(theta_2**4.0)
+	s52=f_4
+	s53=f_4
+	s54=s51
+	s55=-(f_1/(theta_2**4.0)+f_4/theta_2)
+	s56=(f_4/(theta_2**2.0)-f_2/(theta_2**4.0))
+	s57=-(f_3/(theta_2**4.0)+f_4/(theta_2**3.0))
+c
+	s61=-1.0
+	s62=f_8
+	s63=f_8
+	s64=-1.0
+	s65=(f_5+f_8)
+	s66=(f_8-f_6)
+	s67=(f_7+f_8)
+c
+	s71=-1.0
+	s72=(1.0+f_4)
+	s73=f_4
+	s74=(f_4-f_1)
+	s75=(f_4-f_2)
+	s76=(f_4-f_3)
+c
+	s81=-1.0/(theta_2**4.0)
+	s82=(f_8+(1.0/theta_2**4.0))
+	s83=f_8
+	s84=(f_5/(theta_2**4.0)-f_8/theta_2)
+	s85=(f_8/(theta_2**2.0)-f_6/(theta_2**4.0))
+	s86=(f_7/(theta_2**4.0)-f_8/(theta_2**3.0))
+c
+	s91=-s66*s51
+	s92=s56*s61
+	s93=-(s54*s66+s56*s62)
+	s94=(s56*s64+s66*s52)
+	s95=(s56*s63-s66*s53)
+	s96=(s56*s65-s66*s55)
+	s97=(s56*s67-s66*s57)
+c
+	s101=-s85*s71
+	s102=-s85*s72
+	s103=s75*s81
+	s104=s75*s82
+	s105=(s75*s83-s85*s73)
+	s106=(s75*s84-s85*s74)
+	s107=(s75*s86-s85*s76)
+c
+	ca1_uu(i)=(s97*s101-s107*s91)
+	ca2_uu(i)=(s97*s102+s107*s93)
+	ca3_uu(i)=(s95*s107-s105*s97)
+	ca4_uu(i)=(s94*s107+s104*s97)
+	ca5_uu(i)=(s97*s103-s107*s92)
+	ca6_uu(i)=(s97*s106-s107*s96)
+c
+	ak_1=(1.0+2.0*theta_1)*(theta_3+theta_3**2.0)*theta_2
+	ak_2=(1.0+theta_1)*(2.0*theta_3+theta_3**2.0)
+	ak_3=(1.0+theta_1)
+	ak_4=(1.0+theta_1)*((1.0+theta_3)**2.0)
+	ak_5=((1.0+theta_1)**2.0)*(theta_3+theta_3**2.0)*theta_2
+	ak_6=(theta_1**2.0)*theta_2*(theta_3+theta_3**2.0)
+	ak_7=(1.0+theta_1)*(theta_3+theta_3**2.0)*theta_2
+c
+	ck1_uu(i)=ak_3
+	ck2_uu(i)=-ak_4
+	ck3_uu(i)=(ak_1+ak_2)
+	ck4_uu(i)=-ak_5
+	ck5_uu(i)=ak_6
+	ck6_uu(i)=ak_7
+	if(i.eq.42)then
+	write(*,*)theta_1,theta_2,theta_3
+	write(*,*)i,ca1_uu(i),ca2_uu(i),ca3_uu(i),ca4_uu(i),
+     1	ca5_uu(i),ca6_uu(i)
+	write(*,*)i,ck1_uu(i),ck2_uu(i),ck3_uu(i),ck4_uu(i),
+     1	ck5_uu(i),ck6_uu(i)
+	endif
+c
+	enddo
+c
+	do j=3,jre-1
+c
+	theta_1=deltay(j)/deltay(j-1)
+	theta_2=deltay(j+1)/deltay(j)
+	theta_3=deltay(j+2)/deltay(j+1)
+c
+	f_1=theta_3
+	f_2=2.0*theta_3+(theta_3**2.0)
+	f_3=3.0*theta_3+3.0*(theta_3**2.0)+(theta_3**3.0)
+	f_4=4.0*theta_3+6.0*(theta_3**2.0)+4.0*
+     1	    (theta_3**3.0)+(theta_3**4.0)
+	f_5=1.0/(theta_1*theta_2)
+	f_6=(2.0*theta_1+1.0)*(f_5**2.0)
+	f_7=(3.0*(theta_1**2.0)+3.0*theta_1+1.0)*(f_5**3.0)
+     	f_8=(4.0*(theta_1**3.0)+6.0*(theta_1**2.0)+4.0*theta_1+1.0)
+     1	   *(f_5**4.0) 
+c
+	s51=-1.0/(theta_2**4.0)
+	s52=f_4
+	s53=f_4
+	s54=s51
+	s55=-(f_1/(theta_2**4.0)+f_4/theta_2)
+	s56=(f_4/(theta_2**2.0)-f_2/(theta_2**4.0))
+	s57=-(f_3/(theta_2**4.0)+f_4/(theta_2**3.0))
+c
+	s61=-1.0
+	s62=f_8
+	s63=f_8
+	s64=-1.0
+	s65=(f_5+f_8)
+	s66=(f_8-f_6)
+	s67=(f_7+f_8)
+c
+	s71=-1.0
+	s72=(1.0+f_4)
+	s73=f_4
+	s74=(f_4-f_1)
+	s75=(f_4-f_2)
+	s76=(f_4-f_3)
+c
+	s81=-1.0/(theta_2**4.0)
+	s82=(f_8+(1.0/theta_2**4.0))
+	s83=f_8
+	s84=(f_5/(theta_2**4.0)-f_8/theta_2)
+	s85=(f_8/(theta_2**2.0)-f_6/(theta_2**4.0))
+	s86=(f_7/(theta_2**4.0)-f_8/(theta_2**3.0))
+c
+	s91=-s66*s51
+	s92=s56*s61
+	s93=-(s54*s66+s56*s62)
+	s94=(s56*s64+s66*s52)
+	s95=(s56*s63-s66*s53)
+	s96=(s56*s65-s66*s55)
+	s97=(s56*s67-s66*s57)
+c
+	s101=-s85*s71
+	s102=-s85*s72
+	s103=s75*s81
+	s104=s75*s82
+	s105=(s75*s83-s85*s73)
+	s106=(s75*s84-s85*s74)
+	s107=(s75*s86-s85*s76)
+c
+	ca1_vv(j)=(s97*s101-s107*s91)
+	ca2_vv(j)=(s97*s102+s107*s93)
+	ca3_vv(j)=(s95*s107-s105*s97)
+	ca4_vv(j)=(s94*s107+s104*s97)
+	ca5_vv(j)=(s97*s103-s107*s92)
+	ca6_vv(j)=(s97*s106-s107*s96)
+c
+	ak_1=(1.0+2.0*theta_1)*(theta_3+theta_3**2.0)*theta_2
+	ak_2=(1.0+theta_1)*(2.0*theta_3+theta_3**2.0)
+	ak_3=(1.0+theta_1)
+	ak_4=(1.0+theta_1)*((1.0+theta_3)**2.0)
+	ak_5=((1.0+theta_1)**2.0)*(theta_3+theta_3**2.0)*theta_2
+	ak_6=(theta_1**2.0)*theta_2*(theta_3+theta_3**2.0)
+	ak_7=(1.0+theta_1)*(theta_3+theta_3**2.0)*theta_2
+c
+	ck1_vv(j)=ak_3
+	ck2_vv(j)=-ak_4
+	ck3_vv(j)=(ak_1+ak_2)
+	ck4_vv(j)=-ak_5
+	ck5_vv(j)=ak_6
+	ck6_vv(j)=ak_7
+c
+	enddo
+c
+	do i=3,ire-1
+c
+	tmp_dx1=0.5*(deltax(i-1)+deltax(i-2))
+	tmp_dx2=0.5*(deltax(i)+deltax(i-1))
+	tmp_dx3=0.5*(deltax(i)+deltax(i+1))
+	tmp_dx4=0.5*(deltax(i+1)+deltax(i+2))
+c
+	theta_1=tmp_dx2/tmp_dx1
+	theta_2=tmp_dx3/tmp_dx2
+	theta_3=tmp_dx4/tmp_dx3
+c
+	f_1=theta_3
+	f_2=2.0*theta_3+(theta_3**2.0)
+	f_3=3.0*theta_3+3.0*(theta_3**2.0)+(theta_3**3.0)
+	f_4=4.0*theta_3+6.0*(theta_3**2.0)+4.0*
+     1	    (theta_3**3.0)+(theta_3**4.0)
+	f_5=1.0/(theta_1*theta_2)
+	f_6=(2.0*theta_1+1.0)*(f_5**2.0)
+	f_7=(3.0*(theta_1**2.0)+3.0*theta_1+1.0)*(f_5**3.0)
+     	f_8=(4.0*(theta_1**3.0)+6.0*(theta_1**2.0)+4.0*theta_1+1.0)
+     1	   *(f_5**4.0) 
+c
+	s51=-1.0/(theta_2**4.0)
+	s52=f_4
+	s53=f_4
+	s54=s51
+	s55=-(f_1/(theta_2**4.0)+f_4/theta_2)
+	s56=(f_4/(theta_2**2.0)-f_2/(theta_2**4.0))
+	s57=-(f_3/(theta_2**4.0)+f_4/(theta_2**3.0))
+c
+	s61=-1.0
+	s62=f_8
+	s63=f_8
+	s64=-1.0
+	s65=(f_5+f_8)
+	s66=(f_8-f_6)
+	s67=(f_7+f_8)
+c
+	s71=-1.0
+	s72=(1.0+f_4)
+	s73=f_4
+	s74=(f_4-f_1)
+	s75=(f_4-f_2)
+	s76=(f_4-f_3)
+c
+	s81=-1.0/(theta_2**4.0)
+	s82=(f_8+(1.0/theta_2**4.0))
+	s83=f_8
+	s84=(f_5/(theta_2**4.0)-f_8/theta_2)
+	s85=(f_8/(theta_2**2.0)-f_6/(theta_2**4.0))
+	s86=(f_7/(theta_2**4.0)-f_8/(theta_2**3.0))
+c
+	s91=-s66*s51
+	s92=s56*s61
+	s93=-(s54*s66+s56*s62)
+	s94=(s56*s64+s66*s52)
+	s95=(s56*s63-s66*s53)
+	s96=(s56*s65-s66*s55)
+	s97=(s56*s67-s66*s57)
+c
+	s101=-s85*s71
+	s102=-s85*s72
+	s103=s75*s81
+	s104=s75*s82
+	s105=(s75*s83-s85*s73)
+	s106=(s75*s84-s85*s74)
+	s107=(s75*s86-s85*s76)
+c
+	ca1_uv(i)=(s97*s101-s107*s91)
+	ca2_uv(i)=(s97*s102+s107*s93)
+	ca3_uv(i)=(s95*s107-s105*s97)
+	ca4_uv(i)=(s94*s107+s104*s97)
+	ca5_uv(i)=(s97*s103-s107*s92)
+	ca6_uv(i)=(s97*s106-s107*s96)
+c
+	ak_1=(1.0+2.0*theta_1)*(theta_3+theta_3**2.0)*theta_2
+	ak_2=(1.0+theta_1)*(2.0*theta_3+theta_3**2.0)
+	ak_3=(1.0+theta_1)
+	ak_4=(1.0+theta_1)*((1.0+theta_3)**2.0)
+	ak_5=((1.0+theta_1)**2.0)*(theta_3+theta_3**2.0)*theta_2
+	ak_6=(theta_1**2.0)*theta_2*(theta_3+theta_3**2.0)
+	ak_7=(1.0+theta_1)*(theta_3+theta_3**2.0)*theta_2
+c
+	ck1_uv(i)=ak_3
+	ck2_uv(i)=-ak_4
+	ck3_uv(i)=(ak_1+ak_2)
+	ck4_uv(i)=-ak_5
+	ck5_uv(i)=ak_6
+	ck6_uv(i)=ak_7
+c
+	enddo
+c
+	do j=3,jre-1
+c
+	tmp_dy1=0.5*(deltay(j-1)+deltay(j-2))
+	tmp_dy2=0.5*(deltay(j)+deltay(j-1))
+	tmp_dy3=0.5*(deltay(j)+deltay(j+1))
+	tmp_dy4=0.5*(deltay(j+1)+deltay(j+2))
+c
+	theta_1=tmp_dy2/tmp_dy1
+	theta_2=tmp_dy3/tmp_dy2
+	theta_3=tmp_dy4/tmp_dy3
+c
+	f_1=theta_3
+	f_2=2.0*theta_3+(theta_3**2.0)
+	f_3=3.0*theta_3+3.0*(theta_3**2.0)+(theta_3**3.0)
+	f_4=4.0*theta_3+6.0*(theta_3**2.0)+4.0*
+     1	    (theta_3**3.0)+(theta_3**4.0)
+	f_5=1.0/(theta_1*theta_2)
+	f_6=(2.0*theta_1+1.0)*(f_5**2.0)
+	f_7=(3.0*(theta_1**2.0)+3.0*theta_1+1.0)*(f_5**3.0)
+     	f_8=(4.0*(theta_1**3.0)+6.0*(theta_1**2.0)+4.0*theta_1+1.0)
+     1	   *(f_5**4.0) 
+c
+	s51=-1.0/(theta_2**4.0)
+	s52=f_4
+	s53=f_4
+	s54=s51
+	s55=-(f_1/(theta_2**4.0)+f_4/theta_2)
+	s56=(f_4/(theta_2**2.0)-f_2/(theta_2**4.0))
+	s57=-(f_3/(theta_2**4.0)+f_4/(theta_2**3.0))
+c
+	s61=-1.0
+	s62=f_8
+	s63=f_8
+	s64=-1.0
+	s65=(f_5+f_8)
+	s66=(f_8-f_6)
+	s67=(f_7+f_8)
+c
+	s71=-1.0
+	s72=(1.0+f_4)
+	s73=f_4
+	s74=(f_4-f_1)
+	s75=(f_4-f_2)
+	s76=(f_4-f_3)
+c
+	s81=-1.0/(theta_2**4.0)
+	s82=(f_8+(1.0/theta_2**4.0))
+	s83=f_8
+	s84=(f_5/(theta_2**4.0)-f_8/theta_2)
+	s85=(f_8/(theta_2**2.0)-f_6/(theta_2**4.0))
+	s86=(f_7/(theta_2**4.0)-f_8/(theta_2**3.0))
+c
+	s91=-s66*s51
+	s92=s56*s61
+	s93=-(s54*s66+s56*s62)
+	s94=(s56*s64+s66*s52)
+	s95=(s56*s63-s66*s53)
+	s96=(s56*s65-s66*s55)
+	s97=(s56*s67-s66*s57)
+c
+	s101=-s85*s71
+	s102=-s85*s72
+	s103=s75*s81
+	s104=s75*s82
+	s105=(s75*s83-s85*s73)
+	s106=(s75*s84-s85*s74)
+	s107=(s75*s86-s85*s76)
+c
+	ca1_vu(j)=(s97*s101-s107*s91)
+	ca2_vu(j)=(s97*s102+s107*s93)
+	ca3_vu(j)=(s95*s107-s105*s97)
+	ca4_vu(j)=(s94*s107+s104*s97)
+	ca5_vu(j)=(s97*s103-s107*s92)
+	ca6_vu(j)=(s97*s106-s107*s96)
+c
+	ak_1=(1.0+2.0*theta_1)*(theta_3+theta_3**2.0)*theta_2
+	ak_2=(1.0+theta_1)*(2.0*theta_3+theta_3**2.0)
+	ak_3=(1.0+theta_1)
+	ak_4=(1.0+theta_1)*((1.0+theta_3)**2.0)
+	ak_5=((1.0+theta_1)**2.0)*(theta_3+theta_3**2.0)*theta_2
+	ak_6=(theta_1**2.0)*theta_2*(theta_3+theta_3**2.0)
+	ak_7=(1.0+theta_1)*(theta_3+theta_3**2.0)*theta_2
+c
+	ck1_vu(j)=ak_3
+	ck2_vu(j)=-ak_4
+	ck3_vu(j)=(ak_1+ak_2)
+	ck4_vu(j)=-ak_5
+	ck5_vu(j)=ak_6
+	ck6_vu(j)=ak_7
+c
+	enddo
+c
+c	write(*,*)'leaving non_uni_coeff'
+c
+	return
+	end

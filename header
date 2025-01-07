@@ -1,0 +1,47 @@
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+c	DECLARATION OF VARIABLES
+c
+        implicit double precision (a-h,o-z)
+c
+	parameter (if=177,jf=116)
+	common /vector/ u2(if,jf),v2(if,jf),
+     &                u1(if,jf),v1(if,jf),
+     &                p(if,jf),qinlet(jf),pm(if,jf),
+     &                uinlet(jf),uu(6,jf),vv(6,jf),
+     &                residu_0(if,jf),residv_0(if,jf),
+     &		      deltax(if),deltay(jf),uip(7),vip(7),
+     &		      um(if,jf),vm(if,jf),umi(if,jf),vmi(if,jf),
+     &                u2p(if,jf),v2p(if,jf),uv2p(if,jf)
+c
+      common /coeff/  ca1_uu(if),ca2_uu(if),ca3_uu(if),ca4_uu(if),
+     *                ca5_uu(if),ca6_uu(if),
+     * 	 	      ca1_vv(jf),ca2_vv(jf),ca3_vv(jf),ca4_vv(jf),
+     *                ca5_vv(jf),ca6_vv(jf),
+     *                ca1_uv(if),ca2_uv(if),ca3_uv(if),ca4_uv(if),
+     *                ca5_uv(if),ca6_uv(if),
+     *                ca1_vu(jf),ca2_vu(jf),ca3_vu(jf),ca4_vu(jf),
+     *                ca5_vu(jf),ca6_vu(jf),
+     *   	      ck1_uu(if),ck2_uu(if),ck3_uu(if),ck4_uu(if),
+     *                ck5_uu(if),ck6_uu(if),
+     * 	 	      ck1_vv(jf),ck2_vv(jf),ck3_vv(jf),ck4_vv(jf),
+     *                ck5_vv(jf),ck6_vv(jf),
+     *                ck1_uv(if),ck2_uv(if),ck3_uv(if),ck4_uv(if),
+     *                ck5_uv(if),ck6_uv(if),
+     *                ck1_vu(jf),ck2_vu(jf),ck3_vu(jf),ck4_vu(jf),
+     *                ck5_vu(jf),ck6_vu(jf)
+c
+c
+	common /fix/ stab,updef,uc
+c
+	common /vari/ iim,jim,ire,jre,
+     &               itmax,imax,jmax,itime,
+     &               itamax,ita,iti,isum,istop,
+     &               itt,ia,ib,ja,jb,iwrite,
+     &               jn1,jnim,irest,iuprof,iexit,ifile
+c
+	common /varr/ epsi,dtmax,stat,divmax,dt,dt_vel_m,
+     &               re,rev,dtt,zeit,beta0,deltat,dt_rms,
+     &               utop,beta,alpha,dxmin,dymin,al,
+     &		     cl1,cl2
+c
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
